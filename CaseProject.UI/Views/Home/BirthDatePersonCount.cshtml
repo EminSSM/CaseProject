@@ -1,0 +1,27 @@
+﻿@model IEnumerable<TblData>
+@{
+    ViewData["Title"] = "BirthDatePersonCount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Doğum Yılı</th>
+            <th scope="col">Kişi Sayısı</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var group in Model.Where(x => x.BirthYear != null).GroupBy(x => x.BirthYear))
+            {
+                <tr>
+                    <td>@group.Key</td>
+                    <td>@group.Count()</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+

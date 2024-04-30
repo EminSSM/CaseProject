@@ -1,0 +1,48 @@
+﻿@model IEnumerable<TblData>
+@{
+    ViewData["Title"] = "CreatedDateFilter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form asp-controller="Home" asp-action="CreatedDateFilter" method="get">
+    <div class="form-row align-items-center">
+        <div class="col-auto">
+            <label class="col-form-label">Oluşturulma Tarihi:</label>
+            <input type="date" name="date" class="form-control">
+        </div>
+        <br />
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Filtrele</button>
+        </div>
+    </div>
+</form>
+<br />
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Ad</th>
+            <th scope="col">Soyad</th>
+            <th scope="col">Yaşadığı Şehir</th>
+            <th scope="col">Oluşturulma Tarihi</th>
+            <th scope="col">Doğum Yılı</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@(item.Id)</td>
+                    <td>@item.Name</td>
+                    <td>@item.Surname</td>
+                    <td>@item.City</td>
+                    <td>@(item.CreatedDate.ToString("dd.MM.yyyy"))</td>
+                    <td>@item.BirthYear</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
